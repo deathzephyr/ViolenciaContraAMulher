@@ -20,6 +20,12 @@ html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + 20p
 body {
     font-family: var(--font-main); background-color: var(--dark); color: var(--light);
     overflow-x: hidden; line-height: 1.6;
+    
+    /* IMPEDE SELEÇÃO DE TEXTO (PARA ROLAR NO CELULAR SEM SELECIONAR NADA) */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 /* --- Animações --- */
@@ -43,7 +49,7 @@ nav {
 .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent); transition: 0.3s; }
 .nav-links a:hover::after { width: 100%; }
 
-/* Garantindo que o ícone de menu não apareça caso sobe no HTML */
+/* Garantindo que o ícone de menu não apareça */
 .menu-icon { display: none !important; }
 
 /* --- Hero --- */
@@ -95,7 +101,7 @@ h2::after { content: ''; display: block; width: 60px; height: 4px; background: v
 .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #fff; }
 .card p { font-size: 0.95rem; color: rgba(255,255,255,0.7); }
 
-/* --- Parte 3 (Base - Será sobrescrito no final) --- */
+/* --- Parte 3 --- */
 .impact-list { list-style: none; counter-reset: section; }
 .impact-list li { position: relative; padding-left: 4rem; margin-bottom: 2.5rem; }
 .impact-list li::before {
@@ -141,7 +147,13 @@ h2::after { content: ''; display: block; width: 60px; height: 4px; background: v
 }
 .number-card:hover { background: var(--accent); transform: translateY(-5px); box-shadow: 0 0 30px rgba(0,0,0,0.3); }
 .number-card span.label { display: block; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; font-weight: 600; }
-.number-card span.big-num { display: block; font-size: 4.5rem; font-weight: 900; line-height: 1; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.number-card span.big-num { 
+    display: block; font-size: 4.5rem; font-weight: 900; line-height: 1; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.2); 
+    
+    /* PERMITE SELECIONAR O NÚMERO DE TELEFONE */
+    user-select: text;
+    -webkit-user-select: text;
+}
 
 /* --- Footer --- */
 footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,255,255,0.4); border-top: 1px solid var(--glass-border); background-color: #0f0218; }
@@ -182,7 +194,7 @@ footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,2
 }
 
 /* ================================================= */
-/*       FORÇA DE CORES E AJUSTE DEFINITIVO          */
+/*       FORÇA DE CORES E AJUSTES FINAIS              */
 /* ================================================= */
 
 /* 1. Luan Dhony (Início) - Laranja */
@@ -213,17 +225,16 @@ footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,2
     --glass: rgba(3, 169, 244, 0.15) !important;
     --glass-border: rgba(33, 150, 243, 0.3) !important;
 }
-/* AJUSTE DEFINITIVO E AGRESSIVO DOS CÍRCULOS DA CECÍLIA */
+/* AJUSTE DEFINITIVO DOS CÍRCULOS DA CECÍLIA */
 #parte3 .impact-list li::before {
-    width: 45px !important;       /* Era 70px - Agora MUITO menor */
-    height: 45px !important;      /* Era 70px */
-    font-size: 1.8rem !important; /* Era 3rem */
-    line-height: 45px !important; /* Centraliza no círculo menor */
-    top: 0 !important;           /* Ajuste de altura */
+    width: 45px !important;       /* Tamanho Reduzido */
+    height: 45px !important;      /* Tamanho Reduzido */
+    font-size: 1.8rem !important; /* Fonte Reduzida */
+    line-height: 45px !important; /* Centralizar */
+    top: 0 !important;           /* Posição vertical */
 }
-/* Ajuste do texto para acompanhar o círculo menor */
 #parte3 .impact-list li {
-    padding-left: 3rem !important; /* Reduzido para caber o círculo */
+    padding-left: 3rem !important; /* Ajuste de texto */
 }
 #parte3 .card:hover { background: rgba(3, 169, 244, 0.25) !important; }
 
@@ -262,4 +273,4 @@ footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,2
     --primary: #6A1B9A !important;
     --glass: rgba(106, 27, 154, 0.15) !important;
     --glass-border: rgba(156, 39, 176, 0.3) !important;
-               }
+}

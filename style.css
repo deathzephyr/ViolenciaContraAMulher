@@ -38,14 +38,13 @@ nav {
 }
 .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; background: linear-gradient(to right, #fff, #ce93d8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; z-index: 1001; }
 .nav-links { display: flex; align-items: center; }
-.nav-links a {
-    color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 1.2rem;
-    font-size: 0.85rem; font-weight: 500; transition: 0.3s; position: relative;
-}
+.nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 1.2rem; font-size: 0.85rem; font-weight: 500; transition: 0.3s; position: relative; }
 .nav-links a:hover, .nav-links a.active { color: #E1BEE7; }
 .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent); transition: 0.3s; }
 .nav-links a:hover::after { width: 100%; }
-.menu-icon { display: none; font-size: 1.5rem; color: #fff; cursor: pointer; z-index: 1001; }
+
+/* Garantindo que o menu mobile não apareça (caso haja resquício de CSS antigo) */
+.menu-icon { display: none !important; }
 
 /* --- Hero --- */
 header.hero {
@@ -163,13 +162,14 @@ footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,2
 
 /* --- MEDIA QUERIES --- */
 @media (max-width: 900px) { .cases-grid { grid-template-columns: 1fr; } }
+
 @media (max-width: 768px) {
     nav { padding: 0 1.5rem; }
-    .menu-icon { display: block; }
     .nav-links { display: none; position: absolute; top: var(--nav-height); left: 0; width: 100%; background: #1a0524; flex-direction: column; padding: 2rem 0; border-bottom: 1px solid var(--glass-border); }
     .nav-links.active { display: flex; }
     .nav-links a { margin: 0; padding: 1rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: block; font-size: 1.1rem; }
     .nav-links a::after { display: none; }
+    
     section { padding: 4rem 5%; min-height: auto; }
     .section-num { font-size: 4rem; opacity: 0.04; top: 1rem; left: 5%; }
     .card { text-align: center; }
@@ -183,10 +183,10 @@ footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,2
 }
 
 /* ================================================= */
-/*       FORÇA DE CORES POR SEÇÃO (CORREÇÃO)         */
+/*       FORÇA DE CORES E AJUSTES FINAIS              */
 /* ================================================= */
 
-/* 1. Luan Dhony (Início) - Laranja/Dourado */
+/* 1. Luan Dhony (Início) - Laranja */
 #parte1 {
     --accent: #FF9800 !important;
     --secondary: #F57C00 !important;
@@ -212,27 +212,37 @@ footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,2
     --secondary: #0091EA !important;
     --primary: #01579B !important;
     --glass: rgba(3, 169, 244, 0.15) !important;
-    --glass-border: rgba(3, 169, 244, 0.3) !important;
+    --glass-border: rgba(33, 150, 243, 0.3) !important;
+}
+/* AJUSTE ESPECÍFICO DOS CÍRCULOS DA CECÍLIA (MENORES) */
+#parte3 .impact-list li::before {
+    width: 55px !important;       /* Reduzido de 70px */
+    height: 55px !important;      /* Reduzido de 70px */
+    font-size: 2.2rem !important; /* Reduzido de 3rem */
+    top: -2px;
+}
+#parte3 .impact-list li {
+    padding-left: 3.5rem !important; /* Ajustado para caber o círculo menor */
 }
 #parte3 .card:hover { background: rgba(3, 169, 244, 0.25) !important; }
 
-/* 4. Gabriel Barbosa (Ação) - Branco (Light Mode Section) */
+/* 4. Gabriel Barbosa (Ação) - Branco */
 #parte4 {
     --accent: #FFFFFF !important;
     --secondary: #ECEFF1 !important;
-    --primary: #B0BEC5 !important;
+    --primary: #90A4AE !important;
     --glass: rgba(255, 255, 255, 0.1) !important;
     --glass-border: rgba(255, 255, 255, 0.3) !important;
 }
-/* Forçando textos escuros nos elementos brancos para leitura */
-#parte4 .card { background: rgba(255,255,255,0.9); color: #1a0524 !important; }
+/* Ajuste para o card branco */
+#parte4 .card { background: rgba(255,255,255,0.9) !important; color: #1a0524 !important; }
 #parte4 .card:hover { background: #ffffff !important; box-shadow: 0 0 20px rgba(255,255,255,0.4) !important; }
 #parte4 .card h3 { color: #1a0524 !important; }
 #parte4 .card p { color: #444 !important; }
 #parte4 .icon { color: #1a0524 !important; }
 #parte4 .card:hover .icon { background: #1a0524 !important; color: #fff !important; }
 #parte4 .checklist li::before { background: #1a0524 !important; }
-#parte4 .speaker-tag { color: #fff !important; /* Mantém o texto da tag branco por causa do fundo escuro geral */ }
+#parte4 .speaker-tag { color: #fff !important; }
 
 /* 5. João Hélio (Casos Reais) - Verde */
 #parte5 {
@@ -244,11 +254,11 @@ footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,2
 }
 #parte5 .case-card:hover { border-color: #00E676 !important; }
 
-/* 6. Luan Dhony (Final) - Roxo (Usa as do root, mas garantindo) */
+/* 6. Luan Dhony (Final) - Roxo */
 #parte6 {
     --accent: #D500F9 !important;
     --secondary: #AA00FF !important;
     --primary: #6A1B9A !important;
     --glass: rgba(106, 27, 154, 0.15) !important;
     --glass-border: rgba(156, 39, 176, 0.3) !important;
-                   }
+    }

@@ -14,6 +14,24 @@
 </head>
 <body>
 
+    <!-- BOTÃO FLUTUANTE DE CONTROLE (MOVI PARA O TOPO PARA GARANTIR VISIBILIDADE) -->
+    <div class="floating-control">
+        <button class="control-toggle" onclick="toggleControls()" title="Menu Rápido de Apresentação">
+            <i class="fas fa-list-check"></i>
+        </button>
+        <div class="control-menu" id="controlMenu">
+            <div class="control-header">Roteiro Rápido</div>
+            <a href="#parte1" onclick="toggleControls()">01 - Luan Dhony</a>
+            <a href="#parte2" onclick="toggleControls()">02 - Maria Fernanda</a>
+            <a href="#parte3" onclick="toggleControls()">03 - Cecília Moura</a>
+            <a href="#parte4" onclick="toggleControls()">04 - Gabriel Barbosa</a>
+            <a href="#parte5" onclick="toggleControls()">05 - João Hélio</a>
+            <a href="#parte6" onclick="toggleControls()">06 - Luan Dhony</a>
+        </div>
+    </div>
+    <!-- FIM DO BOTÃO FLUTUANTE -->
+
+
     <nav>
         <div class="logo">Maria da Penha</div>
         <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
@@ -184,23 +202,7 @@
         <p>Apresentação Consciente | Combate à Violência Contra a Mulher</p>
     </footer>
 
-    <!-- BOTÃO FLUTUANTE DE CONTROLE (APRESENTAÇÃO) -->
-    <div class="floating-control">
-        <button class="control-toggle" onclick="toggleControls()" title="Menu Rápido">
-            <i class="fas fa-list-check"></i>
-        </button>
-        <div class="control-menu" id="controlMenu">
-            <div class="control-header">Roteiro Rápido</div>
-            <a href="#parte1" onclick="toggleControls()">01 - Luan Dhony</a>
-            <a href="#parte2" onclick="toggleControls()">02 - Maria Fernanda</a>
-            <a href="#parte3" onclick="toggleControls()">03 - Cecília Moura</a>
-            <a href="#parte4" onclick="toggleControls()">04 - Gabriel Barbosa</a>
-            <a href="#parte5" onclick="toggleControls()">05 - João Hélio</a>
-            <a href="#parte6" onclick="toggleControls()">06 - Luan Dhony</a>
-        </div>
-    </div>
-
     <!-- Importando o seu JS -->
     <script src="script.js"></script>
 </body>
-                    </html>
+    </html>

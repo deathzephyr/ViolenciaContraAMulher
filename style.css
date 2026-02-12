@@ -216,6 +216,92 @@ h2::after { content: ''; display: block; width: 60px; height: 4px; background: v
 /* --- Footer --- */
 footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,255,255,0.4); border-top: 1px solid var(--glass-border); background-color: #0f0218; }
 
+/* --- MENU FLUTUANTE DE APRESENTAÇÃO --- */
+.floating-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999; /* Acima de tudo */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.control-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-toggle:hover {
+    transform: rotate(90deg);
+    background: #fff;
+    color: var(--accent);
+}
+
+.control-menu {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 250px;
+    background: rgba(26, 5, 36, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--accent);
+    border-radius: 15px;
+    padding: 1rem;
+    display: none; /* Escondido por padrão */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s ease-in-out;
+}
+
+.control-menu.active {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.control-header {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+}
+
+.control-menu a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 12px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: rgba(255,255,255,0.05);
+    transition: 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.control-menu a:hover {
+    background: var(--accent);
+    padding-left: 18px; /* Efeito de movimento */
+    border-left: 3px solid #fff;
+}
+
 /* --- MEDIA QUERIES --- */
 @media (max-width: 900px) { .cases-grid { grid-template-columns: 1fr; } }
 
@@ -241,4 +327,8 @@ footer { text-align: center; padding: 3rem; font-size: 0.8rem; color: rgba(255,2
     .case-header { padding: 1rem; }
     .case-name { font-size: 1.2rem; }
     .case-year { font-size: 1.5rem; }
-}
+    
+    /* Ajuste do controle mobile */
+    .floating-control { bottom: 20px; right: 20px; }
+    .control-toggle { width: 50px; height: 50px; font-size: 1.2rem; }
+                }

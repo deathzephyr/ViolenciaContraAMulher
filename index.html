@@ -3,157 +3,2088 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Violência Física Contra a Mulher - Apresentação</title>
-    
-    <!-- Importando Fontes e Ícones -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Importando o seu CSS -->
-    <link rel="stylesheet" href="style.css">
+    <title>Não à Violência Contra a Mulher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --fg: #ffffff;
+            --muted: rgba(255,255,255,0.6);
+            --accent: #D500F9;
+            --card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --glow: rgba(213, 0, 249, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* Reading Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FF6D00, #FF1744, #D500F9, #00B0FF, #00E676);
+            z-index: 10000;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .font-display {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container.scrolled {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 3rem;
+        }
+
+        .nav-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link:hover {
+            color: var(--fg);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 100% 80% at 30% 0%, rgba(213, 0, 249, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 80% 60% at 80% 100%, rgba(106, 27, 154, 0.12) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero-text {
+            padding-right: 2rem;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInLeft 0.8s 0.2s forwards;
+        }
+
+        .hero-eyebrow-line {
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-eyebrow-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .hero-title {
+            margin-bottom: 2rem;
+        }
+
+        .hero-title h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+
+        .hero-title h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 480px;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.6s forwards;
+        }
+
+        .hero-cta-group {
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.8s forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: var(--fg);
+            color: var(--bg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, #AA00FF 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .hero-cta:hover::before {
+            opacity: 1;
+        }
+
+        .hero-cta:hover {
+            color: var(--fg);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+
+        .hero-cta span,
+        .hero-cta svg {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-cta svg {
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Hero Stats with Float Animation */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 3rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInRight 0.8s 0.5s forwards, float 6s ease-in-out infinite;
+        }
+
+        .hero-stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #FF6D00, #FF1744, #D500F9);
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 100%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: var(--fg);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .stat-divider {
+            grid-column: span 2;
+            height: 1px;
+            background: var(--border);
+            margin: 0.5rem 0;
+        }
+
+        .stat-highlight {
+            grid-column: span 2;
+            padding: 1.5rem;
+            background: rgba(213, 0, 249, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(213, 0, 249, 0); }
+            50% { box-shadow: 0 0 20px rgba(213, 0, 249, 0.3); }
+        }
+
+        .stat-highlight p {
+            font-size: 0.9rem;
+            color: var(--fg);
+        }
+
+        .stat-highlight strong {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Floating Particles */
+        .particles-container {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.2;
+            filter: blur(1px);
+        }
+
+        /* Section Styles */
+        .section {
+            min-height: 100vh;
+            padding: 8rem 5%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            line-height: 1;
+            opacity: 0.05;
+            position: absolute;
+            top: 4rem;
+            left: 5%;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-label-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--muted);
+            max-width: 600px;
+        }
+
+        /* Speaker Card */
+        .speaker-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .speaker-card:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .speaker-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: transform 0.3s;
+        }
+
+        .speaker-card:hover .speaker-avatar {
+            transform: scale(1.1);
+        }
+
+        .speaker-info {
+            text-align: left;
+        }
+
+        .speaker-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .speaker-role {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            position: relative;
+            padding: 3rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 900px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+        }
+
+        .quote-box:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            line-height: 1;
+            opacity: 0.2;
+            transition: all 0.3s;
+        }
+
+        .quote-box:hover::before {
+            color: var(--accent);
+            opacity: 0.4;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-source {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            position: relative;
+            padding: 2.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature-card:hover::after {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(255,255,255,0.05) inset;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            transition: all 0.4s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .feature-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Impact List */
+        .impact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .impact-item {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: all 0.4s;
+        }
+
+        .impact-item:hover {
+            border-color: var(--accent);
+            transform: translateX(10px);
+            box-shadow: -10px 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .impact-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            border: 2px solid;
+            transition: all 0.4s;
+        }
+
+        .impact-content h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.75rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-content p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* Split Section */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 1.1rem;
+            padding: 1rem;
+            background: var(--card);
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .checklist li:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--border);
+            transform: translateX(5px);
+        }
+
+        .checklist-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: transform 0.3s;
+        }
+
+        .checklist li:hover .checklist-icon {
+            transform: scale(1.2);
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,15,0.8) 0%, transparent 50%);
+        }
+
+        /* Cases Grid */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .case-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: all 0.5s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .case-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .case-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .case-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        .case-body {
+            padding: 2rem;
+        }
+
+        .case-body p {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-impact {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Conclusion Section */
+        .conclusion-section {
+            text-align: center;
+            padding: 10rem 5%;
+        }
+
+        .conclusion-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .conclusion-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 4rem;
+        }
+
+        .conclusion-quote strong {
+            color: var(--fg);
+            font-style: normal;
+        }
+
+        .emergency-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .emergency-card {
+            padding: 2.5rem 3rem;
+            background: var(--card);
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            min-width: 250px;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: var(--accent);
+            border-radius: 24px;
+            opacity: 0;
+            z-index: -1;
+            animation: emergencyPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes emergencyPulse {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(1.02); }
+        }
+
+        .emergency-card:hover {
+            background: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--glow);
+        }
+
+        .emergency-card:hover::before {
+            animation: none;
+            opacity: 0;
+        }
+
+        .emergency-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+        }
+
+        /* Floating Navigation */
+        .floating-nav {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .floating-toggle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a1a24 0%, #0d0d12 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--fg);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 4px 20px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-toggle::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #FF6D00, #FF1744, #00B0FF, #FFFFFF, #00E676, #D500F9, #FF6D00);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+            animation: rotateBorder 3s linear infinite paused;
+        }
+
+        .floating-toggle:hover::before,
+        .floating-toggle.active::before {
+            opacity: 1;
+            animation-play-state: running;
+        }
+
+        @keyframes rotateBorder {
+            to { transform: rotate(360deg); }
+        }
+
+        .floating-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 8px 30px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .floating-toggle.active {
+            transform: rotate(45deg);
+        }
+
+        .floating-menu {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 320px;
+            background: linear-gradient(145deg, rgba(20, 20, 28, 0.98) 0%, rgba(12, 12, 18, 0.98) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        .floating-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .floating-menu-header {
+            padding: 1rem 1.25rem 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-menu-title {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+        }
+
+        .floating-menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .floating-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-menu a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--item-color);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .floating-menu a:hover::before {
+            opacity: 0.15;
+        }
+
+        .floating-menu a:hover {
+            transform: translateX(4px);
+        }
+
+        .floating-menu-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s;
+        }
+
+        .floating-menu a:hover .floating-menu-number {
+            transform: scale(1.1);
+        }
+
+        .floating-menu-text {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .floating-menu-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .floating-menu-section {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-top: 0.15rem;
+        }
+
+        .floating-menu-arrow {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+
+        .floating-menu a:hover .floating-menu-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* Section Colors */
+        .section-orange {
+            --accent: #FF6D00;
+            --glow: rgba(255, 109, 0, 0.4);
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(255, 109, 0, 0.05) 50%, var(--bg) 100%);
+        }
+
+        .section-orange .section-label-dot { background: #FF6D00; }
+        .section-orange .speaker-avatar { background: #FF6D00; }
+        .section-orange .feature-icon { background: rgba(255, 109, 0, 0.15); color: #FF6D00; }
+        .section-orange .feature-card:hover .feature-icon { background: #FF6D00; color: #fff; }
+        .section-orange .quote-source { color: #FF6D00; }
+
+        .section-red {
+            --accent: #FF1744;
+            --glow: rgba(255, 23, 68, 0.4);
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(255, 23, 68, 0.05) 50%, var(--bg) 100%);
+        }
+
+        .section-red .section-label-dot { background: #FF1744; }
+        .section-red .speaker-avatar { background: #FF1744; }
+        .section-red .feature-icon { background: rgba(255, 23, 68, 0.15); color: #FF1744; }
+        .section-red .feature-card:hover .feature-icon { background: #FF1744; color: #fff; }
+
+        .section-blue {
+            --accent: #00B0FF;
+            --glow: rgba(0, 176, 255, 0.4);
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(0, 176, 255, 0.05) 50%, var(--bg) 100%);
+        }
+
+        .section-blue .section-label-dot { background: #00B0FF; }
+        .section-blue .speaker-avatar { background: #00B0FF; }
+        .section-blue .impact-number { border-color: #00B0FF; color: #00B0FF; }
+        .section-blue .impact-item:hover .impact-number { background: #00B0FF; color: #fff; }
+
+        .section-white {
+            --accent: #FFFFFF;
+            --glow: rgba(255, 255, 255, 0.3);
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(255, 255, 255, 0.03) 50%, var(--bg) 100%);
+        }
+
+        .section-white .section-label-dot { background: #FFFFFF; }
+        .section-white .speaker-avatar { background: #FFFFFF; color: var(--bg); }
+        .section-white .checklist-icon { background: #FFFFFF; color: var(--bg); }
+
+        .section-green {
+            --accent: #00E676;
+            --glow: rgba(0, 230, 118, 0.4);
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(0, 230, 118, 0.05) 50%, var(--bg) 100%);
+        }
+
+        .section-green .section-label-dot { background: #00E676; }
+        .section-green .speaker-avatar { background: #00E676; }
+        .section-green .case-header { background: rgba(0, 230, 118, 0.15); }
+        .section-green .case-impact { color: #00E676; }
+
+        .section-purple {
+            --accent: #D500F9;
+            --glow: rgba(213, 0, 249, 0.4);
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(213, 0, 249, 0.08) 50%, var(--bg) 100%);
+        }
+
+        .section-purple .section-label-dot { background: #D500F9; }
+        .section-purple .speaker-avatar { background: #D500F9; }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-text {
+                padding-right: 0;
+                order: 1;
+            }
+
+            .hero-stats {
+                order: 2;
+            }
+
+            .hero-eyebrow {
+                justify-content: center;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-cta-group {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-top: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .section {
+                padding: 6rem 1.5rem;
+            }
+
+            .section-number {
+                font-size: 5rem;
+                top: 2rem;
+                left: 1.5rem;
+            }
+
+            .hero-title h1 {
+                font-size: clamp(2.5rem, 10vw, 3.5rem);
+            }
+
+            .hero-stats {
+                padding: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .impact-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .emergency-numbers {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .floating-nav {
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .floating-menu {
+                width: calc(100vw - 3rem);
+                right: 0;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--fg);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="noise-overlay"></div>
 
-    <!-- BOTÃO FLUTUANTE (Canto Inferior Direito) -->
-    <div class="floating-control">
-        <button class="control-toggle" onclick="toggleControls()" title="Menu Rápido de Apresentação">
-            <i class="fas fa-list-check"></i>
-        </button>
-        <div class="control-menu" id="controlMenu">
-            <div class="control-header">Roteiro Rápido</div>
-            <a href="#parte1" onclick="toggleControls()">01 - Luan Dhony</a>
-            <a href="#parte2" onclick="toggleControls()">02 - Maria Fernanda</a>
-            <a href="#parte3" onclick="toggleControls()">03 - Cecília Moura</a>
-            <a href="#parte4" onclick="toggleControls()">04 - Gabriel Barbosa</a>
-            <a href="#parte5" onclick="toggleControls()">05 - João Hélio</a>
-            <a href="#parte6" onclick="toggleControls()">06 - Luan Dhony</a>
-        </div>
-    </div>
-
-    <!-- BARRA DE NAVEGAÇÃO (TOPO) -->
-    <nav>
-        <div class="logo">Maria da Penha</div>
-        <!-- Botão de 3 traços REMOVIDO -->
-        
-        <div class="nav-links" id="navLinks">
-            <a href="#parte1" onclick="toggleMenu()">Definição</a>
-            <a href="#parte2" onclick="toggleMenu()">Sinais</a>
-            <a href="#parte3" onclick="toggleMenu()">Impactos</a>
-            <a href="#parte4" onclick="toggleMenu()">Ação</a>
-            <a href="#parte5" onclick="toggleMenu()">Casos Reais</a>
-            <a href="#parte6" onclick="toggleMenu()">Conclusão</a>
+    <!-- Navigation -->
+    <nav class="nav-container" id="navbar">
+        <div class="nav-inner">
+            <div class="logo">Maria da Penha</div>
+            <div class="nav-links" id="navLinks">
+                <a href="#parte1" class="nav-link">Definicao</a>
+                <a href="#parte2" class="nav-link">Sinais</a>
+                <a href="#parte3" class="nav-link">Impactos</a>
+                <a href="#parte4" class="nav-link">Acao</a>
+                <a href="#parte5" class="nav-link">Casos</a>
+                <a href="#parte6" class="nav-link">Conclusao</a>
+            </div>
+            <button class="mobile-toggle" onclick="toggleNav()" aria-label="Menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
     </nav>
 
-    <!-- Capa -->
+    <!-- HERO SECTION -->
     <header class="hero">
-        <div class="animate-up">
-            <h1>Não à Violência<br><span class="highlight">Física Contra a Mulher</span></h1>
-            <p>Identifique. Denuncie. Salve vidas.</p>
-            <a href="#parte1" class="btn-scroll">Iniciar Apresentação</a>
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-grid"></div>
+            <div class="particles-container" id="particles"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-eyebrow">
+                    <span class="hero-eyebrow-line"></span>
+                    <span class="hero-eyebrow-text">Lei 11.340/2006</span>
+                </div>
+                
+                <div class="hero-title">
+                    <h1>Violencia Fisica <span>Contra a Mulher</span></h1>
+                </div>
+                
+                <p class="hero-subtitle">
+                    Identifique os sinais, denuncie agressores e salve vidas. Cada acao nossa pode mudar o destino de uma vitima.
+                </p>
+                
+                <div class="hero-cta-group">
+                    <a href="#parte1" class="hero-cta">
+                        <span>Iniciar Apresentacao</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1800000">0</div>
+                    <div class="stat-label">Denuncias por ano</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="67" data-suffix="%">0</div>
+                    <div class="stat-label">Casos nao notificados</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-highlight">
+                    <p>A cada <strong>2 horas</strong>, uma mulher e vitima de feminicidio no Brasil.</p>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- 1. Definição (Luan Dhony - Laranja) -->
-    <section id="parte1">
-        <div class="section-num">01</div>
-        <h2 class="animate-up">O que é?</h2>
-        <div class="speaker-tag animate-up delay-1"><i class="fas fa-microphone"></i> Apresentado por: Luan Dhony</div>
-        
-        <div class="quote-box animate-up delay-2">
-            <p>"Qualquer ação que ofenda a integridade ou saúde corporal da mulher."</p>
-            <span>Lei 11.340/2006 (Maria da Penha)</span>
-        </div>
-        <p class="animate-up delay-3" style="margin-top: 2rem; color: rgba(255,255,255,0.7);">Vai desde tapas e empurrões até agressões com armas. Não é briga, é crime.</p>
-    </section>
-
-    <!-- 2. Sinais (Maria Fernanda - Vermelho) -->
-    <section id="parte2">
-        <div class="section-num">02</div>
-        <h2 class="animate-up">Sinais de Alerta</h2>
-        <div class="speaker-tag animate-up delay-1"><i class="fas fa-microphone"></i> Apresentado por: Maria Fernanda</div>
-        
-        <div class="grid-cards animate-up delay-2">
-            <div class="card"><i class="fas fa-user-injured icon"></i><h3>Lesões Inexplicáveis</h3><p>Hematomas, cortes ou fraturas justificados com desculpas improváveis.</p></div>
-            <div class="card"><i class="fas fa-eye-slash icon"></i><h3>Isolamento Social</h3><p>A mulher para de sair e se afasta de amigos, sempre controlada.</p></div>
-            <div class="card"><i class="fas fa-tshirt icon"></i><h3>Mudança de Hábitos</h3><p>Uso de roupas inadequadas ao calor para esconder marcas no corpo.</p></div>
-        </div>
-    </section>
-
-    <!-- 3. Consequências (Cecília Moura - Azul) -->
-    <section id="parte3">
-        <div class="section-num">03</div>
-        <h2 class="animate-up">O Ciclo do Dano</h2>
-        <div class="speaker-tag animate-up delay-1"><i class="fas fa-microphone"></i> Apresentado por: Cecília Moura</div>
-        
-        <ul class="impact-list">
-            <li class="animate-up delay-2"><h3>Dano Físico Imediato</h3><p style="color:rgba(255,255,255,0.7)">Dor intensa, cicatrizes e, nos casos extremos, o feminicídio.</p></li>
-            <li class="animate-up delay-3"><h3>Destruição Mental</h3><p style="color:rgba(255,255,255,0.7)">Depressão, transtorno de estresse pós-traumático e medo constante.</p></li>
-            <li class="animate-up delay-3"><h3>Normalização</h3><p style="color:rgba(255,255,255,0.7)">Sem ajuda, a violência tende a escalar gravemente.</p></li>
-        </ul>
-    </section>
-
-    <!-- 4. Como Ajudar (Gabriel Barbosa - Branco) -->
-    <section id="parte4">
-        <div class="section-num">04</div>
-        <h2 class="animate-up">Sua Função</h2>
-        <div class="speaker-tag animate-up delay-1"><i class="fas fa-microphone"></i> Apresentado por: Gabriel Barbosa</div>
-        
-        <div class="split-section">
-            <div class="content animate-up delay-2">
-                <p style="margin-bottom: 2rem;">Se você suspeita de um caso, aja. O silêncio protege o agressor.</p>
-                <ul class="checklist">
-                    <li>Escute sem julgar a vítima.</li>
-                    <li>Não culpe a mulher pela agressão.</li>
-                    <li>Incentive a busca por ajuda policial.</li>
-                    <li>Se houver risco imediato, ligue 190.</li>
-                </ul>
+    <!-- Section 1: Definition - Luan Dhony (Orange) -->
+    <section id="parte1" class="section section-orange">
+        <div class="section-number">01</div>
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <span class="section-label-dot"></span>
+                    Primeira Parte
+                </div>
+                <h2 class="section-title">O que e Violencia Fisica?</h2>
             </div>
-            <div class="img-box animate-up delay-3">
-                <img src="https://picsum.photos/seed/empowerment/600/600" alt="Solidariedade feminina">
-            </div>
-        </div>
-    </section>
 
-    <!-- 5. Casos Reais (João Hélio - Verde) -->
-    <section id="parte5">
-        <div class="section-num">05</div>
-        <h2 class="animate-up">Casos que Marcaram</h2>
-        <div class="speaker-tag animate-up delay-1"><i class="fas fa-microphone"></i> Apresentado por: João Hélio</div>
-        
-        <p class="animate-up delay-2" style="margin-bottom: 3rem; color: rgba(255,255,255,0.8);">Tragédias que despertaram a consciência nacional e forçaram mudanças na lei.</p>
-        
-        <div class="cases-grid animate-up delay-3">
-            <div class="case-card">
-                <div class="case-header"><span class="case-name">Maria da Penha</span><span class="case-year">1983</span></div>
-                <div class="case-body"><p>Agredida por seu marido por 6 anos, sobreviveu a duas tentativas de assassinato: um tiro nas costas e uma tentativa de eletrocução. O caso ficou parado no sistema judiciário por 19 anos.</p><span class="case-impact">Origem da Lei Maria da Penha</span></div>
+            <div class="speaker-card reveal reveal-delay-1">
+                <div class="speaker-avatar">LD</div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Luan Dhony</div>
+                    <div class="speaker-role">Apresentador</div>
+                </div>
             </div>
-            <div class="case-card">
-                <div class="case-header"><span class="case-name">Eloá Pimentel</span><span class="case-year">2008</span></div>
-                <div class="case-body"><p>Vítima de uma agressão física que evoluiu para sequestro e assassinato. O caso ocorreu durante 100 horas de tensão na cidade de Santo André (SP), transmitido pela TV, chocando o Brasil.</p><span class="case-impact">Símbolo da Lei 13.104 (Feminicídio)</span></div>
+
+            <div class="quote-box reveal reveal-delay-2">
+                <p class="quote-text">Qualquer acao que ofenda a integridade ou saude corporal da mulher.</p>
+                <span class="quote-source">Lei 11.340/2006 - Lei Maria da Penha</span>
+            </div>
+
+            <p class="reveal reveal-delay-3" style="max-width: 800px; margin-top: 3rem; color: var(--muted); font-size: 1.1rem;">
+                Va desde tapas e empurroes ate agressoes com armas. Nao e briga de casal, nao e excesso de zelo, nao e normalizacao de comportamento. <strong style="color: var(--fg);">E crime.</strong>
+            </p>
+
+            <div class="cards-grid" style="margin-top: 4rem;">
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Agressao Direta</h3>
+                    <p class="feature-desc">Socos, tapas, chutes, mordidas, empurroes e qualquer contato fisico intencional que cause dor ou lesao.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 8v4M12 16h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Uso de Objetos</h3>
+                    <p class="feature-desc">Utilizacao de armas brancas, armas de fogo, objetos domesticos ou qualquer instrumento para agredir.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-4">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Violencia Quimica</h3>
+                    <p class="feature-desc">Queimaduras provocadas por liquidos quentes, acidos ou produtos quimicos lancados contra a vitima.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. Conclusão e Denúncia (Luan Dhony - Roxo) -->
-    <section id="parte6">
-        <div class="section-num">06</div>
+    <!-- Section 2: Warning Signs - Maria Fernanda (Red) -->
+    <section id="parte2" class="section section-red">
+        <div class="section-number">02</div>
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <span class="section-label-dot"></span>
+                    Segunda Parte
+                </div>
+                <h2 class="section-title">Sinais de Alerta</h2>
+                <p class="section-subtitle">Como identificar se alguem proximo esta sofrendo violencia fisica.</p>
+            </div>
+
+            <div class="speaker-card reveal reveal-delay-1">
+                <div class="speaker-avatar">MF</div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Maria Fernanda</div>
+                    <div class="speaker-role">Apresentadora</div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Lesoes Inexplicaveis</h3>
+                    <p class="feature-desc">Hematomas, cortes ou fraturas frequentes justificados com desculpas improvaveis como "cair da escada" ou "esbarrar no armario".</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Isolamento Social</h3>
+                    <p class="feature-desc">A mulher deixa de sair, cancela encontros com amigos e familiares, sempre sob pretextos incertos ou controlados pelo parceiro.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-4">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <path d="M3 9h18"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Mudanca de Habitos</h3>
+                    <p class="feature-desc">Uso de roupas longas mesmo no calor intenso, oculos escuros constantes, maquiagem excessiva para esconder marcas.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Justificativas Repetitivas</h3>
+                    <p class="feature-desc">Explicacoes ensaiadas e historias que nao se sustentam quando questionadas com atencao.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 15h8M9 9h.01M15 9h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Medo Constante</h3>
+                    <p class="feature-desc">Ansiedade ao receber ligações ou mensagens do parceiro, olhares apreensivos quando o nome dele e mencionado.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-4">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Ausencias no Trabalho</h3>
+                    <p class="feature-desc">Faltas frequentes sem explicacao convincente, especialmente apos finais de semana ou feriados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Impacts - Cecília Moura (Blue) -->
+    <section id="parte3" class="section section-blue">
+        <div class="section-number">03</div>
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <span class="section-label-dot"></span>
+                    Terceira Parte
+                </div>
+                <h2 class="section-title">O Ciclo do Dano</h2>
+                <p class="section-subtitle">As consequencias devastadoras que se estendem por geracoes.</p>
+            </div>
+
+            <div class="speaker-card reveal reveal-delay-1">
+                <div class="speaker-avatar">CM</div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Cecilia Moura</div>
+                    <div class="speaker-role">Apresentadora</div>
+                </div>
+            </div>
+
+            <div class="impact-list">
+                <div class="impact-item reveal reveal-delay-2">
+                    <div class="impact-number">01</div>
+                    <div class="impact-content">
+                        <h3>Dano Fisico Imediato</h3>
+                        <p>Dor intensa, cicatrizes permanentes, perda de funcoes corporais, gestacoes interrompidas e, nos casos extremos, o feminicidio. Cada agressao deixa marcas visiveis e invisiveis.</p>
+                    </div>
+                </div>
+                <div class="impact-item reveal reveal-delay-3">
+                    <div class="impact-number">02</div>
+                    <div class="impact-content">
+                        <h3>Destruicao Mental</h3>
+                        <p>Depressao severa, transtorno de estresse pos-traumatico, ansiedade cronica, crises de panico, insônia persistente e o medo constante que paraliza a vida da vitima.</p>
+                    </div>
+                </div>
+                <div class="impact-item reveal reveal-delay-4">
+                    <div class="impact-number">03</div>
+                    <div class="impact-content">
+                        <h3>Impacto nos Filhos</h3>
+                        <p>Criancas testemunhas desenvolvem problemas emocionais, reproduzem comportamentos violentos na vida adulta e carregam traumas que afetam todas as suas relacoes futuras.</p>
+                    </div>
+                </div>
+                <div class="impact-item reveal reveal-delay-2">
+                    <div class="impact-number">04</div>
+                    <div class="impact-content">
+                        <h3>Normalizacao da Violencia</h3>
+                        <p>Sem intervencao, a violencia tende a escalar progressivamente. O ciclo se repete e intensifica, tornando cada vez mais dificil a saida da vitima.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: How to Help - Gabriel Barbosa (White) -->
+    <section id="parte4" class="section section-white">
+        <div class="section-number">04</div>
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <span class="section-label-dot"></span>
+                    Quarta Parte
+                </div>
+                <h2 class="section-title">Sua Funcao</h2>
+                <p class="section-subtitle">Como agir quando voce suspeita de violencia domestica.</p>
+            </div>
+
+            <div class="speaker-card reveal reveal-delay-1">
+                <div class="speaker-avatar">GB</div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Gabriel Barbosa</div>
+                    <div class="speaker-role">Apresentador</div>
+                </div>
+            </div>
+
+            <div class="split-layout">
+                <div class="reveal reveal-delay-2">
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--muted);">
+                        Se voce suspeita de um caso, <strong style="color: var(--fg);">aja</strong>. O silencio protege o agressor e condena a vitima ao sofrimento continuo.
+                    </p>
+                    <ul class="checklist">
+                        <li>
+                            <span class="checklist-icon">1</span>
+                            <span>Escute sem julgar a vitima - acolhimento salva vidas</span>
+                        </li>
+                        <li>
+                            <span class="checklist-icon">2</span>
+                            <span>Nunca culpe a mulher pela agressao sofrida</span>
+                        </li>
+                        <li>
+                            <span class="checklist-icon">3</span>
+                            <span>Incentive a busca por ajuda especializada</span>
+                        </li>
+                        <li>
+                            <span class="checklist-icon">4</span>
+                            <span>Ofereca suporte para registrar boletim de ocorrencia</span>
+                        </li>
+                        <li>
+                            <span class="checklist-icon">5</span>
+                            <span>Se houver risco imediato, ligue <strong>190</strong></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="image-container reveal reveal-delay-3">
+                    <img src="https://sitraemg.org.br/wp-content/uploads/2021/11/WhatsApp-Image-2021-11-23-at-16.56.43-1.jpeg" alt="Acolhimento e solidariedade">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Real Cases - João Hélio (Green) -->
+    <section id="parte5" class="section section-green">
+        <div class="section-number">05</div>
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <span class="section-label-dot"></span>
+                    Quinta Parte
+                </div>
+                <h2 class="section-title">Casos que Marcaram</h2>
+                <p class="section-subtitle">Tragedias que despertaram a consciencia nacional e forçaram mudanças na legislacao brasileira.</p>
+            </div>
+
+            <div class="speaker-card reveal reveal-delay-1">
+                <div class="speaker-avatar">JH</div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Joao Helio</div>
+                    <div class="speaker-role">Apresentador</div>
+                </div>
+            </div>
+
+            <div class="cases-grid">
+                <div class="case-card reveal reveal-delay-2">
+                    <div class="case-header">
+                        <span class="case-name">Maria da Penha</span>
+                        <span class="case-year">1983</span>
+                    </div>
+                    <div class="case-body">
+                        <p>Agredida sistematicamente por seu marido durante 6 anos de casamento, sobreviveu a duas tentativas de assassinato: um tiro disparado as costas enquanto dormia e uma tentativa de eletrocucao. Seu caso ficou parado no sistema judiciario brasileiro por 19 anos.</p>
+                        <span class="case-impact">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            Origem da Lei Maria da Penha
+                        </span>
+                    </div>
+                </div>
+                <div class="case-card reveal reveal-delay-3">
+                    <div class="case-header">
+                        <span class="case-name">Eloa Pimentel</span>
+                        <span class="case-year">2008</span>
+                    </div>
+                    <div class="case-body">
+                        <p>Vitima de uma agressao fisica que evoluiu para sequestro e assassinato. O caso ocorreu durante 100 horas de tensao na cidade de Santo Andre (SP), transmitido ao vivo pela televisao para todo o Brasil, chocando a nacao.</p>
+                        <span class="case-impact">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            Simbolo da Lei 13.104 - Feminicidio
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Conclusion - Luan Dhony (Purple) -->
+    <section id="parte6" class="section section-purple conclusion-section">
+        <div class="section-number">06</div>
         <div class="conclusion-wrapper">
-            <h2 class="animate-up" style="color: #fff; border-bottom: none;">Conclusão</h2>
-            <div class="speaker-tag animate-up delay-1" style="justify-content: center; margin-bottom: 2rem;"><i class="fas fa-microphone"></i> Apresentado por: Luan Dhony</div>
-            
-            <p class="conclusion-text animate-up delay-2">"A violência física contra a mulher não é um problema privado. É uma violação dos direitos humanos e um crime que afeta toda a sociedade. <span class="highlight-number">A lei é nossa aliada, mas a denúncia é nossa arma.</span>"</p>
-            <div class="numbers-grid animate-up delay-3">
-                <div class="number-card"><span class="label">Central de Atendimento</span><span class="big-num">180</span></div>
-                <div class="number-card"><span class="label">Emergência Policial</span><span class="big-num">190</span></div>
+            <div class="section-header reveal" style="text-align: center;">
+                <div class="section-label" style="justify-content: center;">
+                    <span class="section-label-dot"></span>
+                    Conclusao
+                </div>
+                <h2 class="section-title">Juntos Contra a Violencia</h2>
             </div>
-            <p class="animate-up delay-3" style="margin-top: 3rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">Ligue agora. Não fique sozinha. Salve uma vida.</p>
+
+            <div class="speaker-card reveal reveal-delay-1" style="justify-content: center;">
+                <div class="speaker-avatar">LD</div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Luan Dhony</div>
+                    <div class="speaker-role">Apresentador Final</div>
+                </div>
+            </div>
+
+            <p class="conclusion-quote reveal reveal-delay-2">
+                "A violencia fisica contra a mulher nao e um problema privado. E uma <strong>violacao dos direitos humanos</strong> e um crime que afeta toda a sociedade. A lei e nossa aliada, mas <strong>a denuncia e nossa arma.</strong>"
+            </p>
+
+            <div class="emergency-numbers reveal reveal-delay-3">
+                <div class="emergency-card">
+                    <div class="emergency-label">Central de Atendimento</div>
+                    <div class="emergency-number">180</div>
+                </div>
+                <div class="emergency-card">
+                    <div class="emergency-label">Emergencia Policial</div>
+                    <div class="emergency-number">190</div>
+                </div>
+            </div>
+
+            <p class="reveal reveal-delay-4" style="margin-top: 4rem; color: var(--muted); font-size: 0.95rem;">
+                Ligue agora. Nao fique sozinha. Salve uma vida.
+            </p>
         </div>
     </section>
 
-    <footer><p>Apresentação Consciente | Combate à Violência Contra a Mulher</p></footer>
-    
-    <!-- Mantenha o seu arquivo script.js separado -->
-    <script src="script.js"></script>
+    <footer>
+        <p>Apresentacao Consciente | Combate a Violencia Contra a Mulher</p>
+    </footer>
+
+    <!-- Premium Floating Navigation -->
+    <div class="floating-nav">
+        <div class="floating-menu" id="floatingMenu">
+            <div class="floating-menu-header">
+                <div class="floating-menu-title">Navegacao Rapida</div>
+            </div>
+            <div class="floating-menu-items">
+                <a href="#parte1" onclick="toggleFloating()" style="--item-color: #FF6D00;">
+                    <span class="floating-menu-number" style="background: linear-gradient(135deg, #FF6D00, #FF8F00);">01</span>
+                    <div class="floating-menu-text">
+                        <div class="floating-menu-name">Luan Dhony</div>
+                        <div class="floating-menu-section">Definicao</div>
+                    </div>
+                    <svg class="floating-menu-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#parte2" onclick="toggleFloating()" style="--item-color: #FF1744;">
+                    <span class="floating-menu-number" style="background: linear-gradient(135deg, #FF1744, #FF5252);">02</span>
+                    <div class="floating-menu-text">
+                        <div class="floating-menu-name">Maria Fernanda</div>
+                        <div class="floating-menu-section">Sinais de Alerta</div>
+                    </div>
+                    <svg class="floating-menu-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#parte3" onclick="toggleFloating()" style="--item-color: #00B0FF;">
+                    <span class="floating-menu-number" style="background: linear-gradient(135deg, #00B0FF, #40C4FF);">03</span>
+                    <div class="floating-menu-text">
+                        <div class="floating-menu-name">Cecilia Moura</div>
+                        <div class="floating-menu-section">Impactos</div>
+                    </div>
+                    <svg class="floating-menu-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#parte4" onclick="toggleFloating()" style="--item-color: #FFFFFF;">
+                    <span class="floating-menu-number" style="background: linear-gradient(135deg, #FFFFFF, #E0E0E0); color: #1a1a24;">04</span>
+                    <div class="floating-menu-text">
+                        <div class="floating-menu-name">Gabriel Barbosa</div>
+                        <div class="floating-menu-section">Como Ajudar</div>
+                    </div>
+                    <svg class="floating-menu-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#parte5" onclick="toggleFloating()" style="--item-color: #00E676;">
+                    <span class="floating-menu-number" style="background: linear-gradient(135deg, #00E676, #69F0AE);">05</span>
+                    <div class="floating-menu-text">
+                        <div class="floating-menu-name">Joao Helio</div>
+                        <div class="floating-menu-section">Casos Reais</div>
+                    </div>
+                    <svg class="floating-menu-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#parte6" onclick="toggleFloating()" style="--item-color: #D500F9;">
+                    <span class="floating-menu-number" style="background: linear-gradient(135deg, #D500F9, #E040FB);">06</span>
+                    <div class="floating-menu-text">
+                        <div class="floating-menu-name">Luan Dhony</div>
+                        <div class="floating-menu-section">Conclusao</div>
+                    </div>
+                    <svg class="floating-menu-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <button class="floating-toggle" id="floatingToggle" onclick="toggleFloating()" aria-label="Menu de navegacao">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        // Initialize all variables first
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.getElementById('navLinks');
+        const floatingMenu = document.getElementById('floatingMenu');
+        const floatingToggle = document.getElementById('floatingToggle');
+        const particlesContainer = document.getElementById('particles');
+        const progressBar = document.getElementById('progressBar');
+
+        // Reading Progress Bar
+        function updateProgressBar() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        window.addEventListener('scroll', updateProgressBar);
+
+        // Animated Number Counter
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            }
+            return num.toLocaleString('pt-BR');
+        }
+
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+            
+            statNumbers.forEach(el => {
+                const target = parseInt(el.dataset.target);
+                const suffix = el.dataset.suffix || '';
+                const duration = 2000;
+                const startTime = performance.now();
+                const startValue = 0;
+
+                function updateNumber(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                    const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
+                    
+                    el.textContent = formatNumber(currentValue) + suffix;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateNumber);
+                    }
+                }
+
+                requestAnimationFrame(updateNumber);
+            });
+        }
+
+        // Trigger number animation when hero is visible
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(animateNumbers, 500);
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            heroObserver.observe(heroStats);
+        }
+
+        // Toggle Functions
+        function toggleNav() {
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleFloating() {
+            floatingMenu.classList.toggle('active');
+            floatingToggle.classList.toggle('active');
+        }
+
+        // Navbar Scroll Effect
+        function handleScroll() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Intersection Observer for Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Floating Particles
+        function createParticles() {
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animation = `floatParticle ${Math.random() * 10 + 15}s ease-in-out infinite`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes floatParticle {
+                0%, 100% {
+                    transform: translate(0, 0) scale(1);
+                    opacity: 0.2;
+                }
+                25% {
+                    transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(1.5);
+                    opacity: 0.4;
+                }
+                50% {
+                    transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(0.8);
+                    opacity: 0.15;
+                }
+                75% {
+                    transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(1.2);
+                    opacity: 0.3;
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        createParticles();
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Close Menus on Outside Click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.floating-nav')) {
+                floatingMenu.classList.remove('active');
+                floatingToggle.classList.remove('active');
+            }
+            if (!e.target.closest('.nav-container') && !e.target.closest('.mobile-toggle')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Reduced Motion Check
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        
+        if (prefersReducedMotion.matches) {
+            document.querySelectorAll('.particle').forEach(p => p.remove());
+        }
+    </script>
 </body>
 </html>
